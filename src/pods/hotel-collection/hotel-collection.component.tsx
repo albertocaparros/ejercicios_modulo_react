@@ -1,31 +1,33 @@
-import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { HotelEntityVm } from './hotel-collection.vm';
-import { HotelCard } from './components/hotel-card.component';
+import * as React from "react";
+import { withStyles, createStyles, WithStyles } from "@material-ui/core/styles";
+import { HotelEntityVm } from "./hotel-collection.vm";
+import { HotelCard } from "./components/hotel-card.component"; // on next step we will create this component
 
-const useStyles = makeStyles({
-  listLayout: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-});
-
-interface Props {
+interface Props extends WithStyles<typeof styles> {  
   hotelCollection: HotelEntityVm[];
+  editHotel : (id : string) => void;
 }
 
-export const HotelCollectionComponent: React.FunctionComponent<
-  Props
-> = props => {
-  const { hotelCollection } = props;
-  const classes = useStyles(props);
+const styles = theme => createStyles({
+    listLayout: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between"
+    }
+  });
+
+export const HotelCollectionComponentInner = (props: Props) => {
+  const { hotelCollection, classes, editHotel } = props;
 
   return (
     <div className={classes.listLayout}>
       {hotelCollection.map(hotel => (
-        <HotelCard key={hotel.id} hotel={hotel} />
+        <HotelCard hotel={hotel} key={hotel.id} editHotel={editHotel}/>
       ))}
     </div>
   );
 };
+
+export const HotelCollectionComponent = withStyles(styles)(
+  HotelCollectionComponentInner
+);

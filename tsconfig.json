@@ -5,20 +5,21 @@
     "moduleResolution": "node",
     "declaration": false,
     "noImplicitAny": false,
-    "sourceMap": true,
     "jsx": "react",
+    "sourceMap": true,
     "noLib": false,
-    "allowJs": true,
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true,    
     "baseUrl": "./src/",
     "paths": {
-      "layouts": ["./layouts/"],
-      "scenes": ["./scenes/"],
-      "common": ["./common/"],
-      "core": ["./core/"],
-      "pods": ["./pods/"]
+      "@layout": ["./layout/*"],
+      "@scenes": ["./scenes/*"],
+      "@core": ["./core/*"],
+      "@pods": ["./pods/*"],
+      "@common": ["./common/*"]
     }
-  }
+  },
+  "compileOnSave": false,
+  "exclude": ["node_modules"]
 }
