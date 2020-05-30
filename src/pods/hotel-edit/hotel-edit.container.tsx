@@ -56,7 +56,8 @@ const HotelEditContainerInner = (props: Props) => {
   const doSave = () => {
     hotelFormValidation.validateForm(hotel).then((formValidationResult) => {
       if (formValidationResult.succeeded) {
-        console.log('Succeeded !!! entry point to implement real save');
+        history.back();
+        alert('Succeeded !!! entry point to implement real save');
       } else {
         console.log(
           'Validation field you have to reivew some fields, show a snack bar here'
